@@ -6,7 +6,7 @@ import { useGetPlantsQuery } from "../store/features/plants";
 import { addItem } from "../store/features/cart";
 
 const Products = () => {
-  const { isLoading, data: plants, error } = useGetPlantsQuery();
+  const { isLoading, data: groups = [], error } = useGetPlantsQuery();
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.cart);
 
@@ -14,9 +14,6 @@ const Products = () => {
     <Page>
       <div className="py-4 bg-gray-200 min-h-screen">
         <div className="container p-4 md:p-0 mx-auto">
-          <h2 className="text-center md:text-4xl text-2xl font-bold md:my-10 my-5">
-            Air Purifying Plants
-          </h2>
           {isLoading && (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-10">
               {[...Array(9).keys()].map((_, index) => (
@@ -25,18 +22,26 @@ const Products = () => {
             </div>
           )}
 
-          {plants && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-10">
-              {plants.map((plant) => (
-                <Card
-                  key={plant.id}
-                  plant={plant}
-                  buttonDisabled={items.some((i) => i.plant.id === plant.id)}
-                  onButtonClick={() => dispatch(addItem(plant))}
-                />
-              ))}
-            </div>
-          )}
+          {groups &&
+            groups.map((group) => (
+              <div key={group.name}>
+                <h2 className="text-center md:text-4xl text-2xl font-bold md:my-10 my-5">
+                  {group.name}
+                </h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-10">
+                  {group.plants.map((plant) => (
+                    <Card
+                      key={plant.id}
+                      plant={plant}
+                      buttonDisabled={items.some(
+                        (i) => i.plant.id === plant.id
+                      )}
+                      onButtonClick={() => dispatch(addItem(plant))}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
 
           {error && (
             <div
