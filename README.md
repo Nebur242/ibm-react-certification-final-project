@@ -44,15 +44,15 @@ Follow these steps to set up and run the project locally:
    ```bash
    git clone [https://github.com/your-username/paradise-nursery.git](https://github.com/Nebur242/ibm-react-certification-final-project.git)
    
-2. **Navigate to the project directory:**:
+2. **Navigate to the project directory**:
    ```bash
    cd ibm-react-certification-final-project
 
-2. **Install dependencies:**:
+2. **Install dependencies**:
    ```bash
    npm install
 
-2. **Run the development server:**:
+2. **Run the development server**:
    ```bash
    npm run dev
 
