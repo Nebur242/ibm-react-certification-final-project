@@ -3,10 +3,10 @@ import Header from "./header";
 
 const Page = ({ children }) => {
   return (
-    <div>
+    <>
       <Header />
       <div>{children}</div>
-    </div>
+    </>
   );
 };
 
